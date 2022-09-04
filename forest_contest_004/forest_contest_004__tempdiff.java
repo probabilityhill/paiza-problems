@@ -5,15 +5,14 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int y = sc.nextInt();
         int t;
-        String str = "No";
         for (int i = 0; i < 9; i++) {
             t = sc.nextInt();
             if (Math.abs(t - y) >= 3) {
-                str = "Yes";
-                break;
+                System.out.println("Yes");
+                System.exit(0);
             }
             y = t;
         }
-        System.out.println(str);
+        System.out.println("No");
     }
 }
