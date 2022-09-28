@@ -22,6 +22,8 @@
 ## stdin_primer
 + 【行入力】1,000 行の入力
   + [read_line_boss](https://paiza.jp/works/mondai/stdin_primer/stdin_primer__read_line_boss)
++ 【半角スペース区切りでの文字列の分割】5 つの文字列の半角スペース区切りでの分割
+  + [split_string_boss](https://paiza.jp/works/mondai/stdin_primer/stdin_primer__split_string_boss)
  
 ## steinsgate
 + 正則表現のエントリーポイント
