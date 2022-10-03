@@ -34,3 +34,5 @@
 ## steinsgate
 + 正則表現のエントリーポイント
   + [hello_world_boss](https://paiza.jp/works/mondai/steinsgate/hello_world_boss)
++ 性能解析タイプセーフ
+  + [quantity_of_experience_points_boss](https://paiza.jp/works/mondai/steinsgate/quantity_of_experience_points_boss)
