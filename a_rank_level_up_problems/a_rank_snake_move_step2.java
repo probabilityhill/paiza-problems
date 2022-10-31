@@ -9,16 +9,16 @@ public class Main {
         for(int i = 0; i < N; i++) {
             String dir = sc.next();
             if(dir.equals("N")) {
-                y -= 1;
+                y--;
             }
             else if(dir.equals("W")) {
-                x -= 1;
+                x--;
             }
             else if(dir.equals("E")) {
-                x += 1;
+                x++;
             }
             else {
-                y += 1;
+                y++;
             }
             System.out.println(y + " " + x);            
         }
