@@ -5,39 +5,19 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int y = sc.nextInt();
         int x = sc.nextInt();
-        final String D = sc.next();         // N, S, E, W
-        final String DIR_MOVE = sc.next();  // L, R
+        final String D = sc.next();  // N, S, E, W
+        final int LR_MOVE = sc.next().equals("L") ? 1 : -1;
         if(D.equals("N")) {
-            if(DIR_MOVE.equals("L")) {
-                x -= 1;
-            }
-            else {
-                x += 1;
-            }
+            x -= LR_MOVE;
         }
         else if(D.equals("E")) {
-            if(DIR_MOVE.equals("L")) {
-                y -= 1;
-            }
-            else {
-                y += 1;
-            }   
+            y -= LR_MOVE;
         }
         else if(D.equals("S")) {
-            if(DIR_MOVE.equals("L")) {
-                x += 1;
-            }
-            else {
-                x -= 1;
-            }   
+            x += LR_MOVE; 
         }
         else {
-            if(DIR_MOVE.equals("L")) {
-                y += 1;
-            }
-            else {
-                y -= 1;
-            }   
+            y += LR_MOVE;
         }
         System.out.println(y + " " + x);
     }
