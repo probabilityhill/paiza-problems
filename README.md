@@ -6,12 +6,14 @@
   + [a_rank_snake_map_step2](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_map_step2)
   + [a_rank_snake_map_step3](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_map_step3)
   + [a_rank_snake_map_boss](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_map_boss)
-+ マップからの座標取得
++ 座標系での向きの変わる移動
   + [a_rank_snake_move_step1](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_step1)
   + [a_rank_snake_move_step2](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_step2)
   + [a_rank_snake_move_step3](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_step3)
   + [a_rank_snake_move_step4](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_step4)
   + [a_rank_snake_move_boss](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_boss)
++ へび
+  + [a_rank_snake_mapmove_step1](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_mapmove_step1)
   
 ## forest_contest_004
 + いちばんお得
