@@ -8,25 +8,11 @@ public class Main {
         int sy = sc.nextInt();
         int sx = sc.nextInt();
         final String M = sc.next();  // 進む方角
-        
-        // マップ（#で囲む）
-        String[][] map = new String[H+2][W+2];
-        for (int i = 0; i < H+2; i++) {
-            if (i == 0 || i == H+1) {
-                for (int j = 0; j < W+2; j++) {
-                    map[i][j] = "#";
-                }
-            }
-            else {
-                String[] tmp = sc.next().split("");
-                map[i][0] = "#";
-                for (int j = 1; j <= W; j++) {
-                    map[i][j] = tmp[j-1];
-                }
-                map[i][W+1] = "#";
-            }
+        String[][] map = new String[H][W];
+        for (int i = 0; i < H; i++) {
+            map[i] = sc.next().split("");
         }
-        
+
         if (M.equals("E")) {
             sx += 1;
         }
@@ -40,12 +26,12 @@ public class Main {
             sy -= 1;
         }
         
-        if (map[sy+1][sx+1].equals(".")) {
-            System.out.println("Yes");
-        }
-        else {
+        // 範囲外または#であるときは移動不可
+        if (sy < 0 || sy >= H || sx < 0 || sx >= W || map[sy][sx].equals("#")) {
             System.out.println("No");
         }
-        
+        else {
+            System.out.println("Yes");
+        }
     }
 }
