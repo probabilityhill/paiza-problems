@@ -14,6 +14,7 @@
   + [a_rank_snake_move_boss](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_move_boss)
 + へび
   + [a_rank_snake_mapmove_step1](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_mapmove_step1)
+  + [a_rank_snake_mapmove_step12](https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_snake_mapmove_step2)
   
 ## forest_contest_004
 + いちばんお得
