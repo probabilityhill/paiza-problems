@@ -8,7 +8,21 @@ public class Main {
         for(int i = 0; i < N; i++) {
             ARRAY[i] = sc.nextInt();
         }
-        Arrays.sort(ARRAY);
-        System.out.println(ARRAY[N - 2]);
+        int max = 1000000001;
+        for(int i = 0; i < 2; i++) {
+            // 2周目：maxが最大値
+            int max2 = -1000000001;
+            for(int j = 0; j < N; j++) {
+                int n = ARRAY[j];
+                // 2周目：nが最大値でなければ2番目の最大値を更新
+                if(n < max) {
+                    max2 = Math.max(max2, n);
+                }
+            }
+            // 1周目：max2が最大値
+            // 2周目：max2が2番目の最大値
+            max = max2;
+        }
+        System.out.println(max);
     }
 }
