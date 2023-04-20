@@ -32,7 +32,7 @@ public class Main {
         // キューが空になるまで繰り返し
         while (!queue.isEmpty()) {
             Point p = queue.poll();  // 先頭の点を取得＆削除
-            // 4周目になったら終了
+            // 深さ3であれば移動しない
             if (p.level >= 3) {
                 continue;
             }
