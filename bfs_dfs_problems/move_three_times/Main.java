@@ -32,6 +32,7 @@ public class Main {
         // キューが空になるまで繰り返し
         while (!queue.isEmpty()) {
             Point p = queue.poll();  // 先頭の点を取得＆削除
+            // 4周目になったら終了
             if (p.level >= 3) {
                 continue;
             }
@@ -39,12 +40,12 @@ public class Main {
             for (int i = -1; i <= 1; i += 2) {
                 // 上下の移動
                 if (0 <= p.y + i && p.y + i <= H - 1 && GRID[p.y + i][p.x].equals(".")) {
-                    queue.add(new Point(p.level++, p.y + i, p.x));
+                    queue.add(new Point(p.level + 1, p.y + i, p.x));
                     GRID[p.y + i][p.x] = "*";
                 }
                 // 左右の移動
                 if (0 <= p.x + i && p.x + i <= W - 1 && GRID[p.y][p.x + i].equals(".")) {
-                    queue.add(new Point(p.level++, p.y, p.x + i));
+                    queue.add(new Point(p.level + 1, p.y, p.x + i));
                     GRID[p.y][p.x + i] = "*";
                 }
             }
