@@ -11,27 +11,32 @@ public class Main {
         final int Q = sc.nextInt();
 
         for(int i = 0; i < Q; i++) {
-            int k = sc.nextInt();
-            int left = 0;
-            int right = SIZE_A - 1;
-            String result = "No";
-
-            while(left <= right) {
-                int mid = (left + right) / 2;
-
-                if(A[mid] == k) {
-                    result = "Yes";
-                    break;
-                }
-                else if(A[mid] < k) {
-                    left = mid +1;
-                }
-                else {
-                    right = mid - 1;
-                }
+            if(binarySearch(SIZE_A, A, sc.nextInt())) {
+                System.out.println("Yes");
             }
-            System.out.println(result);
+            else {
+                System.out.println("No");
+            }
         }
+    }
 
+    public static boolean binarySearch(int n, int[] a, int val) {
+        int left = 0;
+        int right = n - 1;
+
+        while(left <= right) {
+            int mid = (left + right) / 2;
+
+            if(a[mid] == val) {
+                return true;
+            }
+            else if(a[mid] < val) {
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+        return false;
     }
 }
