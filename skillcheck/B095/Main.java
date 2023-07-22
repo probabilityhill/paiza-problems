@@ -1,46 +1,48 @@
+// 25
+
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        // 入力
         Scanner sc = new Scanner(System.in);
-        final int  N_SINGER = sc.nextInt();
-        final int LEN_SONG = sc.nextInt();
-        final int[] PITCH_LIST = new int[LEN_SONG];
-        int score;
+        final int totalPeople = sc.nextInt();
+        final int songLen = sc.nextInt();
+        final int[] correctPitch = new int[songLen];
+        for(int i = 0; i < songLen; i++) {
+            correctPitch[i] = sc.nextInt();
+        }
         int maxScore = 0;
-        
-        for (int i = 0; i < LEN_SONG; i++) {
-            PITCH_LIST[i] = sc.nextInt();
+        for(int i = 0; i < totalPeople; i++) {
+            int score = 100;
+            for(int cp : correctPitch) {
+                int realPitch = sc.nextInt();
+                score -= diffScore(realPitch, cp);
+            }
+            score = Math.max(0, score);
+            maxScore = Math.max(maxScore, score);
         }
         
-        for (int i = 0; i < N_SINGER; i++) {
-            score = 100;
-            for (int j = 0; j < LEN_SONG; j++) {
-                score = getScore(score, sc.nextInt(), PITCH_LIST[j]);
-            }
-            if (score < 0) {
-                score = 0;
-            }
-            if (score > maxScore) {
-                maxScore = score;
-            }
-        }
         System.out.println(maxScore);
+
     }
-    
-    public static int getScore(int sc, int result, int correctPitch) {
-        int error = Math.abs(result - correctPitch);
-        if (error <= 5) {
-            return sc;
-        } else if (error <= 10) {
-            return sc-1;
-        } else if (error <= 20) {
-            return sc-2;
-        } else if (error <= 30) {
-            return sc-3;
-        } else {
-            return sc-5;
+
+    // 減点される点数
+    public static int diffScore(int realPitch, int correctPitch) {
+        int error = Math.abs(realPitch - correctPitch);
+        if(error <= 5) {
+            return 0;
         }
+        if(error <= 10) {
+            return 1;
+        }
+        if(error <= 20) {
+            return 2;
+        }
+        if(error <= 30) {
+            return 3;
+        }
+        return 5;
     }
-    
 }
+
