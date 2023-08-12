@@ -40,12 +40,12 @@ public class Main {
 
         while(left < right) {
             mid = (left + right) / 2;
-
-            if(k <= scores[mid]) {
-                right = mid;
+            
+            if(scores[mid] < k) {
+                left = mid + 1;
             }
             else {
-                left = mid + 1;
+                right = mid;
             }
         }
 
