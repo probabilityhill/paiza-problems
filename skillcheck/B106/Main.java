@@ -32,7 +32,7 @@ public class Main {
                 if(stuNo == 0) {
                     continue;
                 }
-                
+
                 // 前の席が空席であれば前に詰める
                 if(nextRowIdx < ri) {
                     seat[ri][ci] = 0;
@@ -44,14 +44,15 @@ public class Main {
 
         // 座席を出力
         for(int i = 0; i < H; i++) {
+            String row = "";
             for(int j = 0; j < W; j++) {
-                System.out.print(seat[i][j]);
+                row += seat[i][j];
 
                 if(j != W - 1) {
-                    System.out.print(" ");
+                    row += " ";
                 }
             }
-            System.out.println();
+            System.out.println(row);
         }
     }
 }
