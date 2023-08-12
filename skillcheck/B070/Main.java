@@ -18,14 +18,22 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // 到達可能な場所を1にする
-        board[START_ROW_IDX][START_COL_IDX] = 1;
-        move(START_ROW_IDX, START_COL_IDX, 1);
-
         int reachableCellCount = 0;
-        for(int[] row : board) {
-            for(int cell : row) {
-                reachableCellCount += cell;
+
+        // Bishopの動きに注目すると試行回数2回で盤面の半分のマスに到達可能（市松模様）
+        // Kingの動きも加味すると試行回数3回で全てのマスに到達可能
+        if(K >= 3) {
+            reachableCellCount = N * N;
+        }
+        else {
+            // 到達可能な場所を1にする
+            board[START_ROW_IDX][START_COL_IDX] = 1;
+            move(START_ROW_IDX, START_COL_IDX, 1);
+
+            for(int[] row : board) {
+                for(int cell : row) {
+                    reachableCellCount += cell;
+                }
             }
         }
 
