@@ -3,7 +3,6 @@
 import java.util.*;
 
 public class Main {
-    private static final int TOTAL_ALPHABET = 26;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         final int H = sc.nextInt();
