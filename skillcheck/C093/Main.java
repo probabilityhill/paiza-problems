@@ -2,36 +2,39 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // 入力
         Scanner sc = new Scanner(System.in);
-        int[] scores = {sc.nextInt(), sc.nextInt()};
+        final int scoreBob = sc.nextInt();
+        final int scoreAlice = sc.nextInt();
 
-        // それぞれの点数を更新する
-        for(int i = 0; i < 2; i++) {
-            int score = scores[i];
+        // 比較用の点数を計算
+        final int newScoreBob = calcScore(scoreBob);
+        final int newScoreAlice = calcScore(scoreAlice);
 
-            // 各位の和を計算
-            int sum = 0;
-            while(score > 0) {
-                sum += score % 10;
-                score /= 10;
-            }
-
-            // 点数を各位の和の一の位に更新
-            scores[i] = sum % 10;
+        // 勝敗の判定
+        String winner = null;
+        if(newScoreBob > newScoreAlice) {
+            winner = "Bob";
         }
-
-        // 結果を判定する
-        String result;
-        if(scores[0] > scores[1]) {
-            result = "Bob";
-        }
-        else if(scores[0] < scores[1]) {
-            result = "Alice";
+        else if(newScoreBob < newScoreAlice) {
+            winner = "Alice";
         }
         else {
-            result = "Draw";
+            winner = "Draw";
         }
+        
+        // 出力
+        System.out.println(winner);
+    }
 
-        System.out.println(result);
+    private static int calcScore(int score) {
+        // 各位の和を計算
+        int sum = 0;
+        while(score > 0) {
+            sum += score % 10;
+            score /= 10;
+        }
+        // 和の一の位を返す
+        return sum % 10;
     }
 }
