@@ -1,21 +1,19 @@
-// 31分
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         // 入力
         Scanner sc = new Scanner(System.in);
-        // サイコロの面（T B U D L R）の値
+        // サイコロの面（T B U D L R）の数字
         final int[] dice = new int[6];
         for(int i = 0; i < 6; i++) {
             dice[i] = sc.nextInt();
         }
         // マスの総数
-        final int N = sc.nextInt();
+        final int totalSpaces = sc.nextInt();
         // ボード
-        int[] board = new int[N];
-        for(int i = 0; i < N; i++) {
+        int[] board = new int[totalSpaces];
+        for(int i = 0; i < totalSpaces; i++) {
             board[i] = sc.nextInt();
         }
 
@@ -23,7 +21,7 @@ public class Main {
         int minCount = 0;
 
         int currNum, nextNum;
-        for(int i = 0; i < N - 1; i++) {
+        for(int i = 0; i < totalSpaces - 1; i++) {
             currNum = board[i];
             nextNum = board[i + 1];
 
@@ -48,6 +46,7 @@ public class Main {
 
     // 表の数字から底の数字を得る
     private static int bottomNum(int topNum, int[] dice) {
+        // 表の数字のインデックスを求める
         int topIdx = 0;
         for(int i = 0; i < 6; i++) {
             if(topNum == dice[i]) {
@@ -56,6 +55,7 @@ public class Main {
             }
         }
 
+        // 底の数字のインデックスを求める
         int bottomIdx = 0;
         if(topIdx % 2 == 0) {
             bottomIdx = topIdx + 1;
@@ -67,33 +67,3 @@ public class Main {
         return dice[bottomIdx];
     }
 }
-
-/*
-
-input:
-1 6 2 5 4 3
-4
-1
-5
-3
-4
-
-output:
-4
-
--------------
-
-input:
-6 5 4 3 2 1
-6
-6
-2
-1
-3
-4
-3
-
-output:
-8
-
- */
