@@ -1,64 +1,59 @@
 import java.util.*;
 
 public class Main {
-    static class Node {
-        int idx;
-        ArrayList<Integer> adjList;
-        boolean visited;
-        Node(int idx, ArrayList<Integer> adjList, boolean visited) {
-            this.idx = idx;
-            this.adjList = adjList;
-            this.visited = visited;
-        }
-    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        final int numNodes = sc.nextInt();
-        final int numEdges = sc.nextInt();
-        final int nodeX = sc.nextInt();
-        // ノードリスト作成
-        ArrayList<Node> nodes = new ArrayList<>();
-        for(int i = 0; i < numNodes; i++) {
-            nodes.add(new Node(i, new ArrayList<>(), false));
-        }
-        // 隣接リストを記録
-        for(int i = 0; i < numEdges; i++) {
-            int el = sc.nextInt();
-            int er = sc.nextInt();
-            nodes.get(el - 1).adjList.add(er - 1);
-            nodes.get(er - 1).adjList.add(el - 1);
-        }
-        // 隣接リストをソート
-        for(int i = 0; i < numNodes; i++) {
-            Collections.sort(nodes.get(i).adjList);
-        }
-        // キュー作成
-        ArrayDeque<Node> queue = new ArrayDeque<>();
-        // 最初のノードをキューに追加
-        Node startNode = nodes.get(nodeX - 1);
-        startNode.visited = true;
-        queue.add(startNode);
+        final int N = sc.nextInt();
+        final int M = sc.nextInt();
+        final int X = sc.nextInt();
 
-        // キューが空になるまで繰り返し
-        ArrayList<Integer> route= new ArrayList<>();
+        // 隣接ノードを記録
+        List<List<Integer>> adjNodesList = new ArrayList<>();
+        for(int i = 0; i < N; i++) {
+            adjNodesList.add(new ArrayList<>());
+        }
+        for(int i = 0; i < M; i++) {
+            int n1 = sc.nextInt();
+            int n2 = sc.nextInt();
+            adjNodesList.get(n1 - 1).add(n2 - 1);
+            adjNodesList.get(n2 - 1).add(n1 - 1);
+        }
+
+        // 訪問管理
+        List<Integer> visitedList = new ArrayList<>();
+
+        // キュー
+        Deque<Node> queue = new ArrayDeque<>();
+        queue.add(new Node(X - 1));
+        visitedList.add(X - 1);
+
         while(!queue.isEmpty()) {
-            // 先頭を取得＆キューから削除
-            Node nowNode = queue.poll();
-            // 経路に追加
-            route.add(nowNode.idx + 1);
-            // 隣接ノードを取得
-            for(int adjNodeIdx : nowNode.adjList) {
-                Node adjNode = nodes.get(adjNodeIdx);
-                // 未訪問であれば訪問済みにし隣接ノードをキューに追加
-                if(!adjNode.visited) {
-                    adjNode.visited = true;
+            Node currNode = queue.poll();
+
+            // 未訪問の隣接ノードをキューに追加
+            List<Integer> adjNodes = adjNodesList.get(currNode.idx);
+            Collections.sort(adjNodes);
+            for(int nodeIdx : adjNodes) {
+                if(!visitedList.contains(nodeIdx)) {
+                    visitedList.add(nodeIdx);
+                    Node adjNode = new Node(nodeIdx);
                     queue.add(adjNode);
                 }
             }
         }
+
         // 経路を出力
-        for(int r : route) {
-            System.out.println(r);
+        for(int nodeIdx : visitedList) {
+            System.out.println(nodeIdx + 1);
         }
+    }
+}
+
+class Node {
+    int idx;
+
+    Node(int idx) {
+        this.idx = idx;
     }
 }
