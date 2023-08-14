@@ -1,34 +1,33 @@
 import java.util.*;
 
 public class Main {
+    // 移動距離
+    private static final int[][] MOVE_DIST = {{-1, 0}, {1, 0}, {0, 0}, {0, -1}, {0, 1}};
+
     public static void main(String[] args) {
+        // 入力
         Scanner sc = new Scanner(System.in);
         final int H = sc.nextInt();
         final int W = sc.nextInt();
-        final int Y = sc.nextInt();
-        final int X = sc.nextInt();
-        final boolean[][] GRID = new boolean[H + 2][W + 2];
-        
-        // 到達可能なマスを記録
-        GRID[Y + 1][X + 1] = true;  // 現在いるマス
-        GRID[Y][X + 1] = true;
-        GRID[Y + 1][X] = true;
-        GRID[Y + 2][X + 1] = true;
-        GRID[Y + 1][X + 2] = true;
+        final int y = sc.nextInt();
+        final int x = sc.nextInt();
+
+        // 壁を作る（false）
+        boolean[][] grid = new boolean[H + 2][W + 2];
+
+        // 1回の移動で到達可能なマスをtrueにする
+        for(int[] dist : MOVE_DIST) {
+            grid[y + dist[0] + 1][x + dist[1] + 1] = true;
+        }
 
         // グリッドを出力
-        String output;
-        for(int i = 1; i < H + 1; i++) {
-            for(int j = 1; j < W + 1; j++) {
-                if(GRID[i][j]) {
-                    output = "*";
-                }
-                else {
-                    output = ".";
-                }
-                System.out.print(output);
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < H; i++) {
+            for(int j = 0; j < W; j++) {
+                sb.append(grid[i + 1][j + 1] ? "*" : ".");
             }
-            System.out.println();
+            sb.append("\n");
         }
+        System.out.println(sb.toString());
     }
 }
