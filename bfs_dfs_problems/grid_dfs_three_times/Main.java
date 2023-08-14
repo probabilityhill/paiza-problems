@@ -1,68 +1,41 @@
-// 28
-
 import java.util.*;
 
 public class Main {
+    private static int H, W;
     private static final int MAX_DIST = 3;
-    // 移動距離（左下右上）
-    private static final int[][] MOVE_DIST = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+    // 移動距離（上右下左）
+    private static final int[][] MOVE_DIST = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
     public static void main(String[] args) {
         // 入力
         Scanner sc = new Scanner(System.in);
-        final int H = sc.nextInt();
-        final int W = sc.nextInt();
+        H = sc.nextInt();
+        W = sc.nextInt();
         final int y = sc.nextInt();
         final int x = sc.nextInt();
 
-        // 壁を作る
-        boolean[][] grid = new boolean[H + 2][W + 2];
-        for(int i = 0; i < H; i++) {
-            for(int j = 0; j < W; j++) {
-                grid[i + 1][j + 1] = true;
-            }
+        // 再帰処理
+        dfs(y, x, 0);
+    }
+
+    private static void dfs(int y, int x, int dist) {
+
+        // 最大距離に達したら位置を出力し終了
+        if(dist == MAX_DIST) {
+            System.out.println(y + " " + x);
+            return;
         }
 
-        // 到達点記録用
-        List<Point> ansPoints = new ArrayList<>();
-
-        // スタック
-        Deque<Point> stack = new ArrayDeque<>();
-        stack.add(new Point(y, x, 0));
-
-        while(!stack.isEmpty()) {
-            Point currPoint = stack.poll();
-
-            // 上限に達したら場所を記録しスキップ
-            if(currPoint.dist == MAX_DIST) {
-                ansPoints.add(currPoint);
-                continue;
+        for(int[] d : MOVE_DIST) {
+            int nextY = y + d[0];
+            int nextX = x + d[1];
+            if(canMove(nextY, nextX)) {
+                dfs(nextY, nextX, dist + 1);
             }
-
-            // 壁でない場合はスタックに追加
-            for(int[] dist : MOVE_DIST) {
-                int targetY = currPoint.y + dist[0];
-                int targetX = currPoint.x + dist[1];
-
-                if(grid[targetY + 1][targetX + 1]) {
-                    stack.addFirst(new Point(targetY, targetX, currPoint.dist + 1));
-                }
-            }
-        }
-
-        // 出力
-        for(Point p : ansPoints) {
-            System.out.println(p.y + " " + p.x);
         }
     }
-}
 
-class Point {
-    int y, x, dist;
-
-    Point(int y, int x, int dist) {
-        this.y = y;
-        this.x = x;
-        this.dist = dist;
+    private static boolean canMove(int y, int x) {
+        return y >= 0 && y < H && x >= 0 && x < W;
     }
 }
