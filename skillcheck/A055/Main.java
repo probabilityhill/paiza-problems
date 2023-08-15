@@ -9,7 +9,7 @@ public class Main {
 
     private static char[][] grid;
     private static int H, W;
-    private static boolean canEscape;
+    private static boolean canEscape = false;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         H = sc.nextInt();
@@ -32,22 +32,14 @@ public class Main {
             }
         }
 
-        canEscape = false;
-
-        // 辿れるところはすべて壁にする
+        // 深さ優先探索
         dfs(y, x);
 
-        // 端に到達可能であれば脱出可能
+        // 結果を出力
         System.out.println(canEscape ? "YES" : "NO");
     }
 
     private static void dfs(int y, int x) {
-
-        // 端であれば終了
-        if(isEdge(y, x)) {
-            canEscape = true;
-            return;
-        }
 
         // 訪問した場所は壁にする
         grid[y][x] = WALL;
@@ -57,7 +49,14 @@ public class Main {
         for(int[] d : MOVE_DIST) {
             nextY = y + d[0];
             nextX = x + d[1];
-            if(isInRange(nextY, nextX) && grid[nextY][nextX] == SPACE) {
+
+            // 範囲外であれば脱出可能
+            if(!isInRange(nextY, nextX)) {
+                canEscape = true;
+                return;
+            }
+
+            if(grid[nextY][nextX] == SPACE) {
                 dfs(nextY, nextX);
             }
         }
@@ -67,9 +66,4 @@ public class Main {
     private static boolean isInRange(int y, int x) {
         return y >= 0 && y < H && x >= 0 && x < W;
     }
-
-    // 壁沿いであるかどうか
-    private static boolean isEdge(int y, int x) {
-        return y == 0 || y == H - 1 || x == 0 || x == W - 1;
-    }  
 }
