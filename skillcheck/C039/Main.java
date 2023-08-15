@@ -1,18 +1,17 @@
-import java.util.Scanner;
+// 6
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        // 入力
         Scanner sc = new Scanner(System.in);
-        char[] symbols = sc.next().toCharArray();
-        int sum = 0;
-        for (char n : symbols) {
-            if (n == '<') {
-                sum += 10;
-            }
-            else if (n == '/') {
-                sum += 1;
-            }
-        }
-        System.out.println(sum);
+        final List<String> symbols = Arrays.asList(sc.next().split(""));
+
+        // <の数の10倍と/の数の和を計算
+        final int answer = Collections.frequency(symbols, "<") * 10 + Collections.frequency(symbols, "/");
+
+        // 出力
+        System.out.println(answer);
     }
 }
