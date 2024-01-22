@@ -11,8 +11,8 @@ public class Main {
     private static int boxHeight, boxWidth;
     // 箱の盤面
     private static boolean[][] box;
-    // ブロックの盤面(0°,90°,180°,270°回転)の配列
-    private static boolean[][][] blocks;
+    // ブロックの盤面
+    private static boolean[][] block;
 
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
@@ -24,13 +24,9 @@ public class Main {
             box = new boolean[boxHeight][boxWidth];
             inputGrid(sc, boxHeight, boxWidth, box);
 
-            // ブロックの盤面の配列を作成
-            blocks = new boolean[ROTATION_NUM + 1][MAX_BLOCK_LEN][MAX_BLOCK_LEN];
-            inputGrid(sc, MAX_BLOCK_LEN, MAX_BLOCK_LEN, blocks[0]);
-            // ブロックを回転して配列に追加
-            for (int i = 0; i < ROTATION_NUM; i++) {
-                blocks[i + 1] = rotate(blocks[i]);
-            }
+            // ブロックの盤面を作成
+            block = new boolean[MAX_BLOCK_LEN][MAX_BLOCK_LEN];
+            inputGrid(sc, MAX_BLOCK_LEN, MAX_BLOCK_LEN, block);
 
             // 箱の盤面上でブロックを動かす回数
             final int rowMoveNum = Math.max(boxHeight, MAX_BLOCK_LEN) - MAX_BLOCK_LEN + 1;
@@ -65,8 +61,9 @@ public class Main {
 
     // 障害物のある箱にブロックを挿入できるか判定する
     private static boolean checkBlockInsertion(int rowMoveNum, int colMoveNum) {
-        // ブロックの盤面全パターンをループする
-        for (boolean[][] block : blocks) {
+        int rotationCount = 0;
+        // 挿入できるまでブロックを回転する
+        while (true) {
             // 箱の盤面にブロックを当てはめていく
             for (int ri = 0; ri < rowMoveNum; ri++) {
                 for (int ci = 0; ci < colMoveNum; ci++) {
@@ -75,8 +72,15 @@ public class Main {
                     }
                 }
             }
+
+            // ROTATION_NUM回転したら終了
+            if (rotationCount == ROTATION_NUM) {
+                return false;
+            }
+            // ブロックを回転する
+            block = rotate(block);
+            rotationCount++;
         }
-        return false;
     }
 
     // 指定したブロックを箱に挿入できるかどうか
