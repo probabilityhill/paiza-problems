@@ -1,5 +1,4 @@
-# paiza (Java)
-
+## progress
 |  |  |  |
 | -- | -- | -- |
 | [DPメニュー](https://paiza.jp/works/mondai/dp_primer/problem_index?language_uid=java) | [dp_primer](dp_primer) | 6/21 |
