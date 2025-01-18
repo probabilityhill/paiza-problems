@@ -25,14 +25,15 @@ public class Main {
             int currRank = 1;
             scoreToRankMap.put(sortedScoreArray[0], currRank);
             // sortedScoreArrayの2番目以降をループ
+            int currScore, prevScore;
             for (int i = 1; i < N; i++) {
-                int score = sortedScoreArray[i];
-                int prevScore = sortedScoreArray[i - 1];
+                currScore = sortedScoreArray[i];
+                prevScore = sortedScoreArray[i - 1];
                 // 前の得点よりも低い場合は順位を更新
-                if (score < prevScore) {
+                if (currScore < prevScore) {
                     currRank = i + 1;
                 }
-                scoreToRankMap.put(score, currRank);
+                scoreToRankMap.put(currScore, currRank);
             }
 
             // 各参加者の点数から順位を取得し、StringBuilderで結合
