@@ -32,8 +32,8 @@ public class Main {
                 // 前の得点よりも低い場合は順位を更新
                 if (currScore < prevScore) {
                     currRank = i + 1;
+                    scoreToRankMap.put(currScore, currRank);
                 }
-                scoreToRankMap.put(currScore, currRank);
             }
 
             // 各参加者の点数から順位を取得し、StringBuilderで結合
