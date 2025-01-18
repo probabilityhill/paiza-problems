@@ -36,14 +36,11 @@ public class Main {
                 }
             }
 
-            // 各参加者の点数から順位を取得し、StringBuilderで結合
-            StringBuilder rankStringBuilder = new StringBuilder();
+            // 各参加者の点数から順位を取得し、出力する
             for (int score : scoreArray) {
                 int rank = scoreToRankMap.get(score);
-                rankStringBuilder.append(rank + "\n");
+                System.out.println(rank);
             }
-            // 順位を出力
-            System.out.println(rankStringBuilder.toString());
         }
     }
 }
