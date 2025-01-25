@@ -66,7 +66,7 @@ public class Main {
             // 各区切りの地点まで燃え切るのにかかる時間を改行区切りで出力
             StringBuilder sb = new StringBuilder();
             for (int time : sumTimes) {
-                sb.append(time + "\n");
+                sb.append(time).append("\n");
             }
             System.out.println(sb.toString());
         }
