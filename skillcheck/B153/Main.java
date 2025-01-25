@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     // 渦巻きの方向（右、下、左、上）
-    private static final Point[] DIRECTIONS = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
+    private static final Point[] DIRECTIONS = new Point[] { new Point(0, 1), new Point(1, 0), new Point(0, -1),
+            new Point(-1, 0) };
     // 蚊取り線香の区切りの数
     private static final int DIVISIONS = 4;
 
@@ -55,10 +56,11 @@ public class Main {
                 Point nextPoint = Point.add(currPoint, getDirPoint(turnCounter));
                 if (!canMove(nextPoint, isVisited, N)) {
                     turnCounter++;
+                    nextPoint = Point.add(currPoint, getDirPoint(turnCounter));
                 }
 
                 // 次のブロックに進む
-                currPoint.move(getDirPoint(turnCounter));
+                currPoint = nextPoint;
             }
 
             // 各区切りの地点まで燃え切るのにかかる時間を改行区切りで出力
