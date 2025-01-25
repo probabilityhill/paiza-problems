@@ -76,8 +76,15 @@ public class Main {
      * 指定した地点に進めるかどうか
      */
     private static boolean canMove(Point point, boolean[][] isVisited, int N) {
-        // グリッドの範囲内かつ訪問済みでない
-        return point.getY() >= 0 && point.getY() < N && point.getX() >= 0 && point.getX() < N && !isVisited[point.getY()][point.getX()];
+        // グリッドの範囲外
+        if (point.getY() < 0 || point.getY() >= N || point.getX() < 0 || point.getX() >= N) {
+            return false;
+        }
+        // 訪問済み
+        if (isVisited[point.getY()][point.getX()]) {
+            return false;
+        }
+        return true;
     }
 
     /**
