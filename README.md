@@ -1,7 +1,7 @@
 ## progress
 |  |  |  |
 | -- | -- | -- |
-| [DPメニュー](https://paiza.jp/works/mondai/dp_primer/problem_index?language_uid=java) | [dp_primer](dp_primer) | 9/21 |
+| [DPメニュー](https://paiza.jp/works/mondai/dp_primer/problem_index?language_uid=java) | [dp_primer](dp_primer) | 10/21 |
 | [素朴なソートアルゴリズムメニュー](https://paiza.jp/works/mondai/sort_naive/problem_index?language_uid=java) | [sort_naive](sort_naive) | 3/3 |
 | [効率的なソートアルゴリズムメニュー](https://paiza.jp/works/mondai/sort_efficient/problem_index?language_uid=java) | [sort_efficient](sort_efficient) | 3/3 |
 | [線形探索メニュー](https://paiza.jp/works/mondai/sequence_search_problems/problem_index?language_uid=java) | [sequence_search_problems](sequence_search_problems) | 17/17 |
