@@ -14,6 +14,9 @@ public class Main {
             // ラーメン1杯あたりの利益
             final int profit = sc.nextInt();
 
+            // 総コスト
+            final int totalCost = builtCost + laborCost * openMonths;
+
             // 閉店することになる店舗の数
             int closedStoreCount = 0;
 
@@ -21,9 +24,8 @@ public class Main {
                 // <storeIdx>番目の店舗が<openMonths>ヶ月間に販売したラーメンの杯数
                 final int ramenCount = sc.nextInt();
                 final int totalProfit = profit * ramenCount;
-                final int totalCost = builtCost + laborCost * openMonths;
 
-                // 利益が費用を下回る場合は閉店する
+                // 総利益が総コストを下回る場合は閉店する
                 if (totalProfit < totalCost) {
                     closedStoreCount++;
                 }
