@@ -1,40 +1,25 @@
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
-    private static final String TIME_DELIMITER = ":";
-
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             // 研究室に通った日数
             final int N = sc.nextInt();
 
-            // 合計滞在時間（分）
-            int totalTime = 0;
+            // 合計滞在時間
+            Duration totalTime = Duration.ZERO;
 
             for (int i = 0; i < N; i++) {
-                final int entryTime = timeToMinutes(sc.next());
-                final int leavingTime = timeToMinutes(sc.next());
+                final LocalTime entryTime = LocalTime.parse(sc.next());
+                final LocalTime leavingTime = LocalTime.parse(sc.next());
                 // 滞在時間を加算
-                totalTime += leavingTime - entryTime;
+                totalTime = totalTime.plus(Duration.between(entryTime, leavingTime));
             }
 
-            final int totalHours = totalTime / 60;
-            final int totalMinutes = totalTime % 60;
-
-            System.out.println(totalHours + " " + totalMinutes);
+            // 合計滞在時間を"HH mm"形式で出力
+            System.out.println(totalTime.toHours() + " " + totalTime.toMinutesPart());
         }
-    }
-
-    /**
-     * 時刻形式の文字列を分に変換する
-     *
-     * @param time 時刻"HH:mm"形式の文字列
-     * @return 総分数（例: "01:30" -> 90）
-     */
-    private static int timeToMinutes(String time) {
-        final String[] parts = time.split(TIME_DELIMITER);
-        final int hours = Integer.parseInt(parts[0]);
-        final int minutes = Integer.parseInt(parts[1]);
-        return hours * 60 + minutes;
     }
 }
